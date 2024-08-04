@@ -1,33 +1,50 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+#background{
+    background-image: url("/back.jpg");
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+@media screen and (max-width: 320px) {
+    .search-hide {
+        @apply hidden
+    }
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+@media screen and (max-width: 630px) {
+    .main-search {
+        @apply max-w-[90vw]
+    }
+}
+
+@media screen and (max-width: 440px) {
+    .text-small {
+        @apply text-3xl
+    }
+    .title-bar {
+        @apply text-2xl
+    }
+}
+
+@media screen and (max-width: 740px) {
+    .hide-header-icons {
+        @apply hidden
+    }
+    .menu-bar {
+        @apply block
+    }
+}
+
+@media screen and (max-width) {
+    
 }

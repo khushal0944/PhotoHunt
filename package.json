@@ -1,4 +1,4 @@
-{
+    {
   "name": "my-app",
   "version": "0.1.0",
   "private": true,
@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emailjs/browser": "^4.4.1",
     "@reduxjs/toolkit": "^2.2.7",
     "axios": "^1.7.2",
     "dotenv": "^16.4.5",

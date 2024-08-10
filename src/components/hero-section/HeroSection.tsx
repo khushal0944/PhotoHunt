@@ -1,5 +1,5 @@
 import React from "react";
-import Search from "../navbar/search";
+import Search from "../header/search";
 import Link from "next/link";
 
 function HeroSection() {
@@ -11,14 +11,14 @@ function HeroSection() {
 					<h1 className="text-4xl text-small font-medium text-center text-[#ffffff]">Welcome to PhotoDekho!</h1>
 					<Search className="w-[600px] main-search"/>
 					<div className=" text-white flex items-center w-48 justify-evenly">
-						<Link href="#" className="hover:scale-110 duration-200">
+						<Link href="https://www.instagram.com/itsss_khushal/" target="_blank" className="hover:scale-110 duration-200">
                         <i className="ri-instagram-line text-5xl "></i>
 						</Link>
-						<Link href="#" className="hover:scale-110 duration-200">
+						<Link href="https://www.linkedin.com/in/khushal0944" target="_blank" className="hover:scale-110 duration-200">
                         <i className="ri-linkedin-box-line text-5xl "></i>
-						</Link>
-						<Link href="#" className="hover:scale-110 duration-200">
-                        <i className="ri-twitter-x-line text-5xl"></i>
+						</Link> 
+						<Link href="https://github.com/khushal0944" target="_blank" className="hover:scale-110 duration-200">
+                        <i className="ri-github-fill text-5xl"></i>
 						</Link>
 					</div>
 				</section>

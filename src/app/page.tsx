@@ -5,7 +5,7 @@ import TitleSection from "@/components/titleBar/mainSection";
 import ImageBox from "@/components/ImageBox/ImageBox";
 import { Provider } from "react-redux";
 import { store } from "@/store/store";
-import Header from "@/components/navbar/header";
+import Header from "@/components/header/header";
 import Footer from "@/components/Footer/Footer";
 
 export default function Home() {
@@ -19,7 +19,6 @@ export default function Home() {
 					title="Free Stock Photos"
 					titleClassName="font-medium mt-8"
 				/>
-				<ImageBox />
 				<Footer />
 			</Provider>
 		</>

@@ -7,22 +7,42 @@ import { useSelector } from "react-redux";
 import Loader from "../components/Loader/Loader";
 import { PhotosType } from "@/utils/types";
 
-function ImageBox() {
+interface ImageBoxType {
+    selectedOption: string
+}
+
+function ImageBox({selectedOption}: ImageBoxType) {
 	const [images, setImages] = useState<PhotosType[]>([]);
 	const [loading, setLoading] = useState<boolean>(true);
 	const [columns, setColumns] = useState<PhotosType[][]>([]);
 	const [page, setPage] = useState<number>(1);
 	const [totalPages, setTotalPages] = useState<number | null>(null);
 	const [fetchMore, setFetchMore] = useState<boolean>(false);
-    const search = useSelector((state: any) => state.search.search)
-    const [query, setQuery] = useState<string>(search)
+    const [query, setQuery] = useState<string>(selectedOption)
+    const [totalColumns, setTotalColumns] = useState<number>(3)
 
+    // For the responsiveness of the imageBox component
     useEffect(() => {
-        setQuery(search)
-    },[search])
+        const updateColumns = () => {
+            const width = window.innerWidth;
+            if (width < 500) {
+                setTotalColumns(1);
+            } else if (width < 850) {
+                setTotalColumns(2);
+            } else {
+                setTotalColumns(3);
+            }
+        };
+    
+        updateColumns(); 
+        window.addEventListener('resize', updateColumns);
+    
+        return () => {
+            window.removeEventListener('resize', updateColumns);
+        };
+    }, []);
 
 	const observer = useRef<IntersectionObserver>();
-
 	const lastImageRef = useCallback(
 		(last: HTMLElement | null) => {
 			if (loading || fetchMore) return;
@@ -54,6 +74,10 @@ function ImageBox() {
 		[loading, totalPages, page, fetchMore]
 	);
 
+    useEffect(()=> {
+        setQuery(selectedOption)
+    },[selectedOption])
+
 	useEffect(() => {
 		const fetchAPI = async () => {
 			setLoading(true);
@@ -62,9 +86,11 @@ function ImageBox() {
 					.get("api/getImage", {
 						params: {
 							page,
+                            query
 						},
 					})
 					.then((res) => res.data);
+                    console.log(response.data)
 				setImages(response.data);
 				setTotalPages(response.totalPages);
 			} catch (error) {
@@ -74,11 +100,11 @@ function ImageBox() {
 			}
 		};
 		fetchAPI();
-	}, []);
+	}, [query]);
 
 	useEffect(() => {
 		if (images.length > 0) {
-			setColumns(splitArrayToColumns(images, 3));
+			setColumns(splitArrayToColumns(images, totalColumns));
 		}
 	}, [images]);
 
@@ -98,7 +124,7 @@ function ImageBox() {
 						{column.map((photo, index) => (
 							<div
 								key={photo.id}
-								className="relative group overflow-hidden rounded-lg"
+								className="relative overflow-hidden rounded-lg"
 							>
 								<ImageComponent
 									srcBlur={photo.src.tiny}

@@ -61,8 +61,9 @@ function Header() {
 									singleItem.show && (
                                         <Link href={singleItem.path} key={singleItem.name}>
 										<button
-											className="text-lg hover:border-b-2 duration-75 py-2"
+											className="text-lg relative py-2"
 											key={singleItem.name}
+                                            id="navButton"
 										>
 											{singleItem.icon && (
 												<i
@@ -75,7 +76,7 @@ function Header() {
 									)
 							)}
 							{!login && (
-								<Link href="create-account"><button className="p-2 hover:bg-[#e8dcb9] hover:duration-150 duration-150 hover:text-[#0d1b1e] border-2 w-full md:w-auto text-center">
+								<Link href="/create-account"><button className="p-2 hover:bg-[#e8dcb9] hover:duration-150 duration-150 hover:text-[#0d1b1e] border-2 w-full md:w-auto text-center">
 									CREATE AN ACCOUNT
 								</button></Link>
 							)}

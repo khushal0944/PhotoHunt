@@ -18,12 +18,11 @@ export async function GET(request: Request): Promise<Response> {
     }
 
     const urlParams = new URL(request.url).searchParams;
-    const type = urlParams.get('type') || "curated";
-    const query = urlParams.get('query') || "nature";
+    const query = urlParams.get('query') || "trending";
     const page = parseInt(urlParams.get('page') || "1", 10) || 1;
     const per_page = parseInt(urlParams.get('per_page') || "15", 10) || 18;
     try {
-        const result: ResultDataType = await axios.get(`${api_url}/${type}`, {
+        const result: ResultDataType = await axios.get(`${api_url}/`, {
             headers: {
                 Authorization: api_key,
             },

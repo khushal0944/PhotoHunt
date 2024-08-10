@@ -45,6 +45,43 @@
     }
 }
 
-@media screen and (max-width) {
-    
+
+#navButton:hover::before {
+    content: "";
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-bottom: 2px solid white;
+    animation: animate 300ms linear;
+}
+
+@keyframes animate {
+    0%{
+        width: 0;
+    }
+    100%{
+        width: 100%;
+    }
+}
+
+body {
+    font-family: "Rubik", sans-serif;
+}
+
+.gradient {
+    background: rgb(225,218,218);
+    background: radial-gradient(circle, rgba(225,218,218,1) 0%, rgba(14,29,32,1) 100%);
+}
+
+
+.inputBar {
+    @apply p-5 rounded-xl bg-gray-100 text-xl outline-none
+}
+
+@media screen and (max-width: 1000px) {
+    .blockElement {
+        @apply flex-col items-center gap-y-5
+    }
 }

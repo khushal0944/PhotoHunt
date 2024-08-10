@@ -23,8 +23,8 @@ export interface PhotosType {
 export interface ImagePropsType {
 	srcBlur: string;
 	srcHd: string;
-	height: number;
-	width: number;
+	height: number ;
+	width: number ;
 	alt: string;
 	className?: string;
 }

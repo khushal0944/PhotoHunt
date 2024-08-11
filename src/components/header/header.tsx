@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import Logo from "./logo";
 import Search from "./search";
 import Link from "next/link";
@@ -18,7 +18,7 @@ function Header() {
 			icon: "ri-time-fill",
 			name: "Latest",
 			show: true,
-            path: "/latest"
+            path: "/categories/Popular"
 		},
 		{
 			icon: "ri-menu-line",
@@ -47,21 +47,21 @@ function Header() {
 	];
 	return (
 		<>
-			<header className="fixed top-0 w-full px-4 py-1.5 z-40 header bg-[#0d1b1e] text-[#fff] border-b-2 border-[#9ebdff]">
+			<header className="sticky top-0 w-full px-4 py-1.5 z-40 header bg-[#0d1b1e] text-[#fff] border-b-2 border-[#9ebdff]">
 				<nav className="flex justify-between items-center">
 					<div className="flex items-center gap-5">
 						<Link href={"/"}><Logo /></Link>
-						<div className="hidden ml-4">
+						<div className="ml-2 hide-search">
 							<Search className="w-64 lg:w-80 h-9" />
 						</div>
 					</div>
-						<div className="flex flex-row hide-header-icons gap-x-5 items-center sm md:items-center">
+						<div className="flex flex-row hide-header-icons gap-x-5 items-center">
 							{navItems.map(
 								(singleItem) =>
 									singleItem.show && (
                                         <Link href={singleItem.path} key={singleItem.name}>
 										<button
-											className="text-lg relative py-2"
+											className={`text-lg relative py-2`}
 											key={singleItem.name}
                                             id="navButton"
 										>
@@ -81,6 +81,7 @@ function Header() {
 								</button></Link>
 							)}
 						</div>
+                            <div className="hidden" id="show-menu"><i className="text-3xl ri-menu-line"></i></div>
 				</nav>
 				<div className="mt-4 hidden px-4">
 					<Search className="w-full h-9" />

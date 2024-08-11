@@ -9,7 +9,7 @@
 	bottom: 0;
 	width: 10px;
 	height: 50%;
-	background: rgb(0, 0, 0);
+	background: white;
 	transform-origin: center bottom;
 	box-shadow: 1px 1px 0 rgba(0, 0, 0, 0.2);
 }

@@ -17,17 +17,17 @@ function TitleSection({ title, titleClassName }: MainSectionType) {
 		<>
 			<div
 				id="titleBar"
-				className={`text-gray-700 max-w-full flex items-center justify-between px-5 ${titleClassName}`}
+				className={`text-gray-300 max-w-full flex items-center justify-between px-5 ${titleClassName}`}
 			>
 				<h1 className=" text-3xl title-bar">{title}</h1>
 				<Select
 					options={option}
 					defaultSelect={selectVal}
 					changeFunction={(val) => setSelectVal(val)}
-					className="border-[1px] p-2 rounded-lg text-lg outline-none cursor-pointer hover:border-black duration-150 hover:duration-150"
+					className="p-2 rounded-lg bg-gray-800 hover:bg-gray-900 border-2 border-[#fffa] hover:border-[#fff] text-lg outline-none cursor-pointer  text-[#fff] duration-150 hover:duration-150"
 				/>
 			</div>
-			<ImageBox selectedOption={selectVal}/>
+			<ImageBox queryName={selectVal}/>
 		</>
 	);
 }

@@ -27,4 +27,7 @@ export interface ImagePropsType {
 	width: number ;
 	alt: string;
 	className?: string;
+	photographer_id: number;
+    photographer: string;
+    avg_color: string
 }

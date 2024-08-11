@@ -20,9 +20,9 @@ export async function GET(request: Request): Promise<Response> {
     const urlParams = new URL(request.url).searchParams;
     const query = urlParams.get('query') || "trending";
     const page = parseInt(urlParams.get('page') || "1", 10) || 1;
-    const per_page = parseInt(urlParams.get('per_page') || "15", 10) || 18;
+    const per_page = parseInt(urlParams.get('per_page') || "15", 10) || 9;
     try {
-        const result: ResultDataType = await axios.get(`${api_url}/`, {
+        const result: ResultDataType = await axios.get(`${api_url}/search/`, {
             headers: {
                 Authorization: api_key,
             },

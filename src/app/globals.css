@@ -36,15 +36,23 @@
     }
 }
 
-@media screen and (max-width: 740px) {
+@media screen and (max-width: 800px) {
     .hide-header-icons {
         @apply hidden
+    }
+    #show-menu {
+        display: block;
     }
     .menu-bar {
         @apply block
     }
 }
 
+@media screen and (max-width: 1150px) {
+    .hide-search {
+        @apply hidden
+    }
+}
 
 #navButton:hover::before {
     content: "";
@@ -68,20 +76,26 @@
 
 body {
     font-family: "Rubik", sans-serif;
+    background-color: #0D1117;
 }
 
-.gradient {
+/* .gradient {
     background: rgb(225,218,218);
     background: radial-gradient(circle, rgba(225,218,218,1) 0%, rgba(14,29,32,1) 100%);
-}
+} */
 
 
 .inputBar {
-    @apply p-5 rounded-xl bg-gray-100 text-xl outline-none
+    @apply rounded-xl bg-[#0D1117] text-lg text-white outline-none focus:outline-blue-500
 }
 
-@media screen and (max-width: 1000px) {
-    .blockElement {
-        @apply flex-col items-center gap-y-5
-    }
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
 }

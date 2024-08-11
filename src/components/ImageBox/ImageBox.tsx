@@ -3,44 +3,22 @@ import React, { useCallback, useEffect, useRef, useState } from "react";
 import { splitArrayToColumns } from "./splitArray";
 import ImageComponent from "./ImageComponent";
 import axios from "axios";
-import { useSelector } from "react-redux";
 import Loader from "../components/Loader/Loader";
 import { PhotosType } from "@/utils/types";
 
 interface ImageBoxType {
-    selectedOption: string
+    queryName: string
 }
 
-function ImageBox({selectedOption}: ImageBoxType) {
+function ImageBox({queryName}: ImageBoxType) {
 	const [images, setImages] = useState<PhotosType[]>([]);
 	const [loading, setLoading] = useState<boolean>(true);
 	const [columns, setColumns] = useState<PhotosType[][]>([]);
 	const [page, setPage] = useState<number>(1);
 	const [totalPages, setTotalPages] = useState<number | null>(null);
 	const [fetchMore, setFetchMore] = useState<boolean>(false);
-    const [query, setQuery] = useState<string>(selectedOption)
+    const [query, setQuery] = useState<string>(queryName)
     const [totalColumns, setTotalColumns] = useState<number>(3)
-
-    // For the responsiveness of the imageBox component
-    useEffect(() => {
-        const updateColumns = () => {
-            const width = window.innerWidth;
-            if (width < 500) {
-                setTotalColumns(1);
-            } else if (width < 850) {
-                setTotalColumns(2);
-            } else {
-                setTotalColumns(3);
-            }
-        };
-    
-        updateColumns(); 
-        window.addEventListener('resize', updateColumns);
-    
-        return () => {
-            window.removeEventListener('resize', updateColumns);
-        };
-    }, []);
 
 	const observer = useRef<IntersectionObserver>();
 	const lastImageRef = useCallback(
@@ -57,8 +35,8 @@ function ImageBox({selectedOption}: ImageBoxType) {
 					setFetchMore(true);
 					try {
 						const nextPage = page + 1;
-						const response = await axios.get("api/getImage", {
-							params: { page: nextPage },
+						const response = await axios.get("/api/getImage", {
+							params: { page: nextPage, query },
 						});
 						setImages((prev) => [...prev, ...response.data.data]);
 						setPage(nextPage);
@@ -75,24 +53,27 @@ function ImageBox({selectedOption}: ImageBoxType) {
 	);
 
     useEffect(()=> {
-        setQuery(selectedOption)
-    },[selectedOption])
+        console.log("query", query)
+        setQuery(queryName)
+        setPage(1); 
+    },[queryName])
 
 	useEffect(() => {
 		const fetchAPI = async () => {
 			setLoading(true);
 			try {
 				const response = await axios
-					.get("api/getImage", {
+					.get("/api/getImage", {
 						params: {
 							page,
                             query
 						},
 					})
 					.then((res) => res.data);
-                    console.log(response.data)
+                    console.log(response)
 				setImages(response.data);
 				setTotalPages(response.totalPages);
+                setPage(1);
 			} catch (error) {
 				console.error("Error fetching images:", error);
 			} finally {
@@ -110,7 +91,7 @@ function ImageBox({selectedOption}: ImageBoxType) {
 
 	if (loading)
 		return (
-            <Loader />
+            <Loader className="mb-5"/>
 		);
 
 	return (
@@ -132,9 +113,12 @@ function ImageBox({selectedOption}: ImageBoxType) {
 									alt={photo.alt}
 									width={photo.width}
 									height={photo.height}
+                                    avg_color={photo.avg_color}
+                                    photographer={photo.photographer}
+                                    photographer_id={photo.photographer_id}
 									ref={
-										index + 1 === column.length &&
-										columnIndex + 1 === columns.length
+										(index + 1) === column.length &&
+										columnIndex + 1  === columns.length
 											? lastImageRef
 											: null
 									}
@@ -145,7 +129,7 @@ function ImageBox({selectedOption}: ImageBoxType) {
 					</div>
 				))}
 			</div>
-			{fetchMore && <Loader />}
+			{fetchMore && <Loader className="mb-5"/>}
 		</>
 	);
 }

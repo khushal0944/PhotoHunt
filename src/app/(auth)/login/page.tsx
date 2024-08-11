@@ -14,50 +14,54 @@ function page() {
 		e.preventDefault();
 	}
 
-	function navigateSignIn() {
-			router.push("/signin");
+	function navigateCreateAccount() {
+			router.push("/create-account");
 	}
 
 	return (
 		<>
 			<div
 				id="container"
-				className="gradient h-screen w-full flex justify-center items-center"
+				className="max-h-screen w-full flex bg-[#0D1117] justify-center items-center"
 			>
 				<form
 					onSubmit={(e) => handleSubmit(e)}
-					className="shadow-2xl w-1/2 bg-[#9d90903b] max-h-fit min-h-4/5 min-w-fit p-10 flex gap-5 items-center flex-col"
+					className="w-1/2 min-w-fit flex items-center justify-center flex-col p-10"
 				>
-					<h1 className="text-5xl underline text-purple-900 font-bold mt-10 mb-10">
+					<h1 className="text-4xl text-white mb-5">
 						Login
 					</h1>
+                    <div className="shadow-2xl p-5 flex flex-col border-[#292E35] border-2 gap-y-5 rounded-xl bg-[#161B22]">
 					<Input
 						value={email}
+                        label="Email"
 						type="email"
 						inputChange={(e) => setEmail(e.target.value)}
 						className="inputBar "
 						placeHolder="Enter Email"
-					/>
+                        />
 					<Input
 						value={password}
+						label="Password"
 						type="password"
 						inputChange={(e) => setPassword(e.target.value)}
 						className="inputBar "
 						placeHolder="Enter Password"
-					/>
-                    <Link href={"/"} className=""><button className="hover:underline">Forgot Password</button></Link>
+                        />
+                    <Link href={"/"} className="text-center text-white"><button className="hover:underline">Forgot Password</button></Link>
 						<button
 							type="submit"
-							className="bg-gray-800 shadow-inner w-4/5 h-10 text-xl hover:bg-gray-950 text-white rounded-full uppercase"
-						>
+							className="bg-green-700 hover:bg-green-500 w-full h-10 text-xl text-white rounded-full uppercase"
+                            >
 							Login
 						</button>
-                        <div>
+                                </div>
+                        <div className="mt-5 border-2 text-gray-300 border-[#292E35] bg-[#161B22] rounded-xl p-5">
                         Don't have an Account?
 						<button
 							type="button"
-							onClick={navigateSignIn}
-							className="ml-1 text-white hover:underline hover:text-gray-200"
+							onClick={navigateCreateAccount}
+							className="ml-2 text-blue-500 hover:underline"
 						>
 							Sign up
 						</button>

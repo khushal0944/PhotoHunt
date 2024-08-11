@@ -1,9 +1,13 @@
 import React from "react";
 import "./Loader.css"
 
-function Loader() {
+interface LoaderClassType {
+    className ?: string
+}
+
+function Loader({className}: LoaderClassType) {
 	return (
-		<div className="flex justify-center text-4xl items-center">
+		<div className={`flex justify-center text-4xl ${className} items-center`}>
 			<div className="loader">
 				<div className="loader__bar"></div>
 				<div className="loader__bar"></div>

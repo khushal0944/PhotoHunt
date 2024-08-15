@@ -19,7 +19,7 @@ function TitleSection({ title, titleClassName }: MainSectionType) {
 				id="titleBar"
 				className={`text-gray-300 max-w-full flex items-center justify-between px-5 ${titleClassName}`}
 			>
-				<h1 className=" text-3xl title-bar">{title}</h1>
+				<h1 className=" text-3xl title-bar">{selectVal} {title}</h1>
 				<Select
 					options={option}
 					defaultSelect={selectVal}

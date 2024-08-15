@@ -26,11 +26,17 @@ function Header() {
 			show: true,
             path: "/categories"
 		},
+		// {
+		// 	icon: "ri-add-large-fill",
+		// 	name: "Upload",
+		// 	show: true,
+        //     path: "/upload"
+		// },
 		{
-			icon: "ri-add-large-fill",
-			name: "Upload",
+			icon: "ri-video-on-line",
+			name: "Videos",
 			show: true,
-            path: "/upload"
+            path: "/videos"
 		},
 		{
 			icon: "ri-login-box-fill",

@@ -1,4 +1,4 @@
-import { PhotosType } from "./ImageBox";
+import { PhotosType } from "@/utils/types";
 
 export const splitArrayToColumns = (
 	arr: PhotosType[],

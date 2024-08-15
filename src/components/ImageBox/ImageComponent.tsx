@@ -1,7 +1,6 @@
 import Image from "next/image";
 import React, { ForwardedRef, forwardRef, useEffect, useState } from "react";
 import { ImagePropsType } from "@/utils/types";
-import Link from "next/link";
 
 const ImageComponent = forwardRef<HTMLImageElement, ImagePropsType>(
 	(props: ImagePropsType, ref: ForwardedRef<HTMLImageElement>) => {
@@ -14,7 +13,6 @@ const ImageComponent = forwardRef<HTMLImageElement, ImagePropsType>(
 			height,
 			width,
 			className,
-			photographer_id,
 			photographer,
 			avg_color,
 		} = props;
@@ -26,15 +24,34 @@ const ImageComponent = forwardRef<HTMLImageElement, ImagePropsType>(
 			};
 		}, [srcBlur, srcHd]);
 
+		function handleImageClick() {}
+
+		function handleDownload() {
+			fetch(srcHd)
+				.then((res) => res.blob())
+				.then((blob) => {
+					const url = window.URL.createObjectURL(blob);
+					const link = document.createElement("a");
+					link.href = url;
+					link.download = `${alt || "image"}.jpg`;
+					document.body.appendChild(link);
+					link.click();
+					document.body.removeChild(link);
+					window.URL.revokeObjectURL(url);
+				})
+				.catch((error) => console.log(error));
+		}
+
 		return (
 			<div
 				style={{ position: "relative" }}
 				ref={ref}
 				onMouseOver={() => setIsHovered(true)}
 				onMouseLeave={() => setIsHovered(false)}
+				onClick={handleImageClick}
 			>
 				{isHovered && (
-					<div className="absolute w-full h-full bg-[#0000002c] cursor-pointer z-30 p-2">
+					<div className="absolute w-full h-full bg-[#0000005e] cursor-pointer z-30 p-2">
 						<button className="rounded-full bg-white w-10 h-10 float-right ml-2 cursor-auto hover:bg-[#e4e2e2]">
 							<i className="text-xl ri-heart-line"></i>
 						</button>
@@ -45,22 +62,22 @@ const ImageComponent = forwardRef<HTMLImageElement, ImagePropsType>(
 							id="bottom"
 							className=" absolute bottom-5 left-5 flex items-center gap-x-2"
 						>
-								<div
-									className="rounded-full bg-white w-10 h-10 flex items-center justify-center font-bold"
-									style={{ backgroundColor: avg_color }}
-								>
-									{photographer.charAt(0).toUpperCase()}
-								</div>
-								<div className="text-white text-lg">
-									{photographer}
-								</div>
+							<div
+								className="rounded-full bg-white w-10 h-10 flex items-center justify-center font-bold"
+								style={{ backgroundColor: avg_color }}
+							>
+								{photographer.charAt(0).toUpperCase()}
+							</div>
+							<div className="text-white text-lg">
+								{photographer}
+							</div>
 						</div>
-						<div
-							id="downloadbtn"
-							className="absolute bottom-5 bg-green-700 hover:bg-[#216921c5] p-4 h-10 text-white rounded-xl right-5 flex items-center justify-center gap-x-2 text-lg"
+						<button
+							className={`absolute bottom-5 bg-green-600 transition hover:bg-[#154315bf] p-4 h-10 text-white rounded-xl right-5 flex items-center justify-center gap-x-2 text-lg`}
+							onClick={handleDownload}
 						>
 							<i className="ri-download-2-line"></i>Download
-						</div>
+						</button>
 					</div>
 				)}
 				<Image

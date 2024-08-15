@@ -1,17 +1,18 @@
 "use client"
-import Footer from '@/components/Footer/Footer'
-import Header from '@/components/header/header'
+import HeroSection from '@/components/hero-section/HeroSection'
+import Bar from '@/components/img-vid-bar/bar'
+import TitleSection from '@/components/titleBar/mainSection'
 import React from 'react'
-import { Provider } from 'react-redux'
-import { store } from '@/store/store'
 
 function Home() {
   return (
     <>
-    <Provider store={store}>
-        <Header />
-        <Footer />
-    </Provider>
+        <HeroSection type='video'/>
+        <Bar/>
+        <TitleSection
+					title="Free Stock Videos"
+					titleClassName="font-medium mt-8"
+				/>
     </>
   )
 }

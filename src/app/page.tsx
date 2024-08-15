@@ -5,7 +5,7 @@ import TitleSection from "@/components/titleBar/mainSection";
 export default function Home() {
 	return (
 		<>
-				<HeroSection />
+				<HeroSection type="image" />
 				<Bar />
 				<TitleSection
 					title="Free Stock Photos"

@@ -1,7 +1,10 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Select from "../components/select";
-import ImageBox from "../ImageBox/ImageBox";
+import ImageBox from "../mainBoxes/imageBox/ImageBox";
+import { useDispatch, useSelector } from "react-redux";
+import { StateFromReducersMapObject } from "@reduxjs/toolkit";
+import { changeQuery } from "@/store/query-store/querySlice";
 
 interface MainSectionType {
 	title: string;
@@ -9,9 +12,14 @@ interface MainSectionType {
 }
 
 function TitleSection({ title, titleClassName }: MainSectionType) {
-	const [selectVal, setSelectVal] = useState("Trending");
+    const queryStore = useSelector((state: any) => state.queryStore.query)
+	const [selectVal, setSelectVal] = useState(queryStore);
 	const option = ["Trending", "New"];
-    console.log(selectVal)
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        dispatch(changeQuery(selectVal))
+    },[selectVal])
 
 	return (
 		<>
@@ -27,7 +35,7 @@ function TitleSection({ title, titleClassName }: MainSectionType) {
 					className="p-2 rounded-lg bg-gray-800 hover:bg-gray-900 border-2 border-[#fffa] hover:border-[#fff] text-lg outline-none cursor-pointer  text-[#fff] duration-150 hover:duration-150"
 				/>
 			</div>
-			<ImageBox queryName={selectVal}/>
+			{/* <ImageBox queryName={selectVal}/> */}
 		</>
 	);
 }

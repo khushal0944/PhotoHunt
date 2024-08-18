@@ -18,11 +18,17 @@ function page() {
 
 	async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
 		e.preventDefault();
+        if(!userName || userName.trim() === "" || typeof userName !== "string") return
+        if(!email || email.trim() === "" || typeof email !== "string" || !email.match(/^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/i)) return
+        if(!password || password.trim() === "" || typeof password !== "string" || password.length < 8) return
 		otpRef.current = verificationOTP();
 		const checked = checkCredentials(userName, email, password);
 		if (!checked) return;
-		await sendVerificationEmail(userName, email, otpRef.current);
-		setVerifyOTP(true);
+		const result = await sendVerificationEmail(userName, email, otpRef.current);
+        if(result?.status === 422){
+            alert(result?.text)
+            setVerifyOTP(true);
+        }
 	}
 
 	function navigateLogIn() {

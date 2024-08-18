@@ -26,7 +26,7 @@ function page() {
         "Music",
         "Nature",
         "Other",
-        "Pokémon",
+        "Pokemon",
         "Religion",
         "Religion",
         "Resolutions",

@@ -5,6 +5,7 @@ import { ImagePropsType } from "@/utils/types";
 const ImageComponent = forwardRef<HTMLImageElement, ImagePropsType>(
 	(props: ImagePropsType, ref: ForwardedRef<HTMLImageElement>) => {
 		const [loadingStage, setLoadingStage] = useState<"Blur" | "Hd">("Blur");
+		const [skeleton, setSkeleton] = useState<boolean>(true);
 		const [isHovered, setIsHovered] = useState<boolean>(false);
 		const {
 			srcBlur,
@@ -20,6 +21,7 @@ const ImageComponent = forwardRef<HTMLImageElement, ImagePropsType>(
 			const blurImage = new window.Image();
 			blurImage.src = srcBlur;
 			blurImage.onload = () => {
+                setSkeleton(false)
 				setLoadingStage("Hd");
 			};
 		}, [srcBlur, srcHd]);
@@ -50,6 +52,9 @@ const ImageComponent = forwardRef<HTMLImageElement, ImagePropsType>(
 				onMouseLeave={() => setIsHovered(false)}
 				onClick={handleImageClick}
 			>
+                {
+                    skeleton && <div className={`absolute w-full h-full bg-[#${avg_color}] cursor-pointer z-30 p-2`} />
+                }
 				{isHovered && (
 					<div className="absolute w-full h-full bg-[#0000005e] cursor-pointer z-30 p-2">
 						<button className="rounded-full bg-white w-10 h-10 float-right ml-2 cursor-auto hover:bg-[#e4e2e2]">
@@ -68,7 +73,7 @@ const ImageComponent = forwardRef<HTMLImageElement, ImagePropsType>(
 							>
 								{photographer.charAt(0).toUpperCase()}
 							</div>
-							<div className="text-white text-lg">
+							<div className="text-white text-lg p-1">
 								{photographer}
 							</div>
 						</div>
@@ -76,15 +81,15 @@ const ImageComponent = forwardRef<HTMLImageElement, ImagePropsType>(
 							className={`absolute bottom-5 bg-green-600 transition hover:bg-[#154315bf] p-4 h-10 text-white rounded-xl right-5 flex items-center justify-center gap-x-2 text-lg`}
 							onClick={handleDownload}
 						>
-							<i className="ri-download-2-line"></i>Download
+							<i className="ri-download-2-line"></i>
 						</button>
 					</div>
 				)}
 				<Image
 					src={loadingStage === "Blur" ? srcBlur : srcHd}
 					className={`object-cover transition-all duration-300 ${className} ${
-						loadingStage === "Hd" ? "filter-none" : "filter blur-sm"
-					}`}
+						loadingStage === "Hd" ? "filter-none animate-none" : "filter blur-sm animate-pulse"
+					} `}
 					height={height}
 					width={width}
 					alt={alt}

@@ -1,16 +1,14 @@
 "use client";
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import { splitArrayToColumns } from "./splitArray";
+import { splitArrayToColumns } from "../splitArray";
 import ImageComponent from "./ImageComponent";
 import axios from "axios";
-import Loader from "../components/Loader/Loader";
+import Loader from "../../components/Loader/Loader";
 import { PhotosType } from "@/utils/types";
+import { useSelector } from "react-redux";
 
-interface ImageBoxType {
-    queryName: string
-}
-
-function ImageBox({queryName}: ImageBoxType) {
+function ImageBox() {
+    const queryName: string = useSelector((state: any) => state.queryStore.query)
 	const [images, setImages] = useState<PhotosType[]>([]);
 	const [loading, setLoading] = useState<boolean>(true);
 	const [columns, setColumns] = useState<PhotosType[][]>([]);
@@ -35,7 +33,7 @@ function ImageBox({queryName}: ImageBoxType) {
 					setFetchMore(true);
 					try {
 						const nextPage = page + 1;
-						const response = await axios.get("/api/getImage", {
+						const response = await axios.get("/api/get-images", {
 							params: { page: nextPage, query },
 						});
 						setImages((prev) => [...prev, ...response.data.data]);
@@ -63,7 +61,7 @@ function ImageBox({queryName}: ImageBoxType) {
 			setLoading(true);
 			try {
 				const response = await axios
-					.get("/api/getImage", {
+					.get("/api/get-images", {
 						params: {
 							page,
                             query
@@ -76,6 +74,7 @@ function ImageBox({queryName}: ImageBoxType) {
                 setPage(1);
 			} catch (error) {
 				console.error("Error fetching images:", error);
+                alert("Please Check Your Internet Connection")
 			} finally {
 				setLoading(false);
 			}

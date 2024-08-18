@@ -20,6 +20,29 @@ export interface PhotosType {
 	alt: string;
 }
 
+export interface VideosType {
+            "id": number,
+            "width": number,
+            "height": number,
+            "url": string,
+            "image": string,
+            "duration": number,
+            "user": {
+                "id": number,
+                "name": string,
+                "url": string
+            },
+            "video_files": Array<
+                {
+                    "id": number,
+                    "quality": string,
+                    "file_type": string,
+                    "width": number,
+                    "height": number,
+                    "link": string
+                }>
+}
+
 export interface ImagePropsType {
 	srcBlur: string;
 	srcHd: string;

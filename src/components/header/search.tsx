@@ -1,5 +1,5 @@
 "use client"
-import { changeSearch } from "@/store/search-store/searchSlice";
+import { changeQuery } from "@/store/query-store/querySlice";
 import { FormEvent, useState } from "react";
 import { useDispatch } from "react-redux";
 
@@ -10,7 +10,7 @@ export default function Search({ className = ""}) {
     function handleSubmit (e: FormEvent<HTMLFormElement>) {
         e.preventDefault()
         if(searchInput.trim() === "") return;
-        dispatch(changeSearch(searchInput))
+        dispatch(changeQuery(searchInput))
         // setSearchInput("")
     }
 

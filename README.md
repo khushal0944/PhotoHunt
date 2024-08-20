@@ -1,37 +1,35 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Photo Hunt App
 
-## Getting Started
+Welcome to the Photo Hunt App project! This web application is designed to help you search, explore, and download stunning images with ease. Built with Next.js and TypeScript, it provides a smooth and responsive user experience enhanced by Redux Toolkit for state management and styled with Tailwind CSS.
 
-First, run the development server:
+## Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **Image Search:** Quickly find images by keyword.
+- **Image Download:** Download high-quality images directly from the app.
+- **User Authentication:** Sign in and log in securely using MongoDB.
+- **Responsive Design:** Enjoy a seamless experience across all devices.
+- **Infinite Scrolling:** Effortlessly browse through a continuous stream of images.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Tech Stack
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Frontend:** Next.js, TypeScript, Tailwind CSS
+- **State Management:** Redux Toolkit
+- **Database:** MongoDB for user authentication and data storage
+- **Styling:** Tailwind CSS for custom and utility-first styling
+- **Deployment:** Deployed on Vercel, accessible at 
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Contributing
 
-## Learn More
+We welcome contributions from the community! If you'd like to contribute to the project, please follow these steps:
 
-To learn more about Next.js, take a look at the following resources:
+1. Fork the repository and clone it locally.
+2. Create a new branch for your feature or bug fix.
+3. Make your changes and test thoroughly.
+4. Commit your changes and push to your forked repository.
+5. Open a pull request with a clear description of your changes.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Contact
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+For any inquiries or feedback, please reach out to us at [khushalsuthar0944@gmail.com](mailto:khushalsuthar0944@gmail.com).
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
-# PhotoDekho
+Feel free to explore and enhance your photo collection with our app!

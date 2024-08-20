@@ -16,7 +16,7 @@ Welcome to the Photo Hunt App project! This web application is designed to help 
 - **State Management:** Redux Toolkit
 - **Database:** MongoDB for user authentication and data storage
 - **Styling:** Tailwind CSS for custom and utility-first styling
-- **Deployment:** Deployed on Vercel, accessible at 
+- **Deployment:** Deployed on Vercel, accessible at https://photohunt.vercel.app
 
 ## Contributing
 

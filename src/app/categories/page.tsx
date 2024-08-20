@@ -2,7 +2,7 @@
 import React from 'react'
 import { useRouter } from 'next/navigation';
 
-function page() {
+function Page() {
     
     const categories = [
         "Animals",
@@ -55,4 +55,4 @@ function page() {
   )
 }
 
-export default page
+export default Page

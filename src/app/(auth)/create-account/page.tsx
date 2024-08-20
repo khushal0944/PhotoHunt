@@ -7,7 +7,7 @@ import verificationOTP from "@/utils/verificationOTP";
 import { useRouter } from "next/navigation";
 import OtpInputWithValidation from "@/components/otpWithValidation";
 
-function page() {
+function Page() {
 	const [userName, setUserName] = useState("");
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
@@ -107,4 +107,4 @@ function page() {
 	);
 }
 
-export default page;
+export default Page;

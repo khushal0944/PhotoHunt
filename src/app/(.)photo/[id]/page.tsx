@@ -4,11 +4,10 @@ interface paramsType {
     params: string
 }
 
-function page({params}: paramsType) {
-
+function Page({params}: paramsType) {
     return (
         <div></div>
     )
 }
 
-export default page
+export default Page

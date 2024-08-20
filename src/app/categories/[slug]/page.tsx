@@ -5,7 +5,7 @@ import ImageBox from "@/components/mainBoxes/imageBox/ImageBox";
 import { useDispatch } from "react-redux";
 import { changeQuery } from "@/store/query-store/querySlice";
 
-function page() {
+function Page() {
 	const { slug } = useParams<{ slug: string }>();
     const dispatch = useDispatch()
 
@@ -19,4 +19,4 @@ function page() {
 	);
 }
 
-export default page;
+export default Page;

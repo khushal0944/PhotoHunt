@@ -99,4 +99,5 @@ const ImageComponent = forwardRef<HTMLImageElement, ImagePropsType>(
 	}
 );
 
+ImageComponent.displayName = "SingleImage"
 export default ImageComponent;

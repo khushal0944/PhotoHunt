@@ -57,7 +57,7 @@ function Page() {
 						</button>
                                 </div>
                         <div className="mt-5 border-2 text-gray-300 border-[#292E35] bg-[#161B22] rounded-xl p-5">
-                        Don't have an Account?
+                        Don&apos;t have an Account?
 						<button
 							type="button"
 							onClick={navigateCreateAccount}

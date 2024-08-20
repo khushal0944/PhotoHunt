@@ -105,7 +105,7 @@ function ImageBox() {
 								key={photo.id}
 								className="relative overflow-hidden rounded-lg"
 							>
-								<VideoComponent
+								{/* <VideoComponent
 									srcBlur={photo.src.tiny}
 									srcHd={photo.src.large2x}
 									alt={photo.alt}
@@ -121,7 +121,7 @@ function ImageBox() {
 											: null
 									}
 									className="object-cover transition-transform duration-300 group-hover:scale-105"
-								/>
+								/> */}
 							</div>
 						))}
 					</div>
@@ -131,4 +131,4 @@ function ImageBox() {
 		</>
 	);
 }
-// export default ImageBox;
+export default ImageBox;

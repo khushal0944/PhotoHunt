@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import "./globals.css";
 import StoreProvider from "@/store/Provider";
 import Header from "@/components/header/header";
+import dbConnect from "@/database/dbConnect";
+
+dbConnect()
 
 export const metadata: Metadata = {
 	title: "Photo Hunt",
